@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F0910E0325129F20008EB227 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0910E0225129F20008EB227 /* DrawingView.swift */; };
 		F0D1913B2512999A0044CC2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D1913A2512999A0044CC2C /* AppDelegate.swift */; };
 		F0D1913D2512999A0044CC2C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D1913C2512999A0044CC2C /* SceneDelegate.swift */; };
-		F0D1913F2512999A0044CC2C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D1913E2512999A0044CC2C /* ViewController.swift */; };
+		F0D1913F2512999A0044CC2C /* EditDrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D1913E2512999A0044CC2C /* EditDrawingViewController.swift */; };
 		F0D191422512999A0044CC2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0D191402512999A0044CC2C /* Main.storyboard */; };
 		F0D191442512999C0044CC2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0D191432512999C0044CC2C /* Assets.xcassets */; };
 		F0D191472512999C0044CC2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0D191452512999C0044CC2C /* LaunchScreen.storyboard */; };
@@ -35,10 +36,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F0910E0225129F20008EB227 /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
 		F0D191372512999A0044CC2C /* Doodler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Doodler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0D1913A2512999A0044CC2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0D1913C2512999A0044CC2C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F0D1913E2512999A0044CC2C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F0D1913E2512999A0044CC2C /* EditDrawingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDrawingViewController.swift; sourceTree = "<group>"; };
 		F0D191412512999A0044CC2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F0D191432512999C0044CC2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F0D191462512999C0044CC2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -101,7 +103,8 @@
 			children = (
 				F0D1913A2512999A0044CC2C /* AppDelegate.swift */,
 				F0D1913C2512999A0044CC2C /* SceneDelegate.swift */,
-				F0D1913E2512999A0044CC2C /* ViewController.swift */,
+				F0D1913E2512999A0044CC2C /* EditDrawingViewController.swift */,
+				F0910E0225129F20008EB227 /* DrawingView.swift */,
 				F0D191402512999A0044CC2C /* Main.storyboard */,
 				F0D191432512999C0044CC2C /* Assets.xcassets */,
 				F0D191452512999C0044CC2C /* LaunchScreen.storyboard */,
@@ -258,9 +261,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0D1913F2512999A0044CC2C /* ViewController.swift in Sources */,
+				F0D1913F2512999A0044CC2C /* EditDrawingViewController.swift in Sources */,
 				F0D1913B2512999A0044CC2C /* AppDelegate.swift in Sources */,
 				F0D1913D2512999A0044CC2C /* SceneDelegate.swift in Sources */,
+				F0910E0325129F20008EB227 /* DrawingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +440,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SU7N66HUH3;
 				INFOPLIST_FILE = Doodler/Info.plist;
@@ -445,6 +450,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.alexlucas.Doodler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -455,6 +461,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SU7N66HUH3;
 				INFOPLIST_FILE = Doodler/Info.plist;
@@ -464,6 +471,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.alexlucas.Doodler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
