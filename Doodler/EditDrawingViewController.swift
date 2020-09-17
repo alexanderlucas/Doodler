@@ -15,8 +15,11 @@ class EditDrawingViewController: UIViewController {
     
     var currentDrawing: Drawing!
     
+    @IBOutlet weak var drawingView: UIView!
     @IBOutlet weak var colorWell: UIColorWell!
     @IBOutlet weak var eraserButton: UIButton!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     var drawingColor: UIColor = UIColor.label
     
@@ -28,9 +31,16 @@ class EditDrawingViewController: UIViewController {
         
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action:#selector(handleScreenPan))
         
-        view.addGestureRecognizer(panGestureRecognizer)
+        drawingView.addGestureRecognizer(panGestureRecognizer)
         
-        currentDrawing = Drawing()
+        if currentDrawing == nil {
+            currentDrawing = Drawing()
+        } else {
+            for layer in currentDrawing.markLayers {
+                view.layer.addSublayer(layer)
+            }
+
+        }
         colorWell.selectedColor = drawingColor
         colorWell.title = "Select Pencil Color"
         colorWell.addTarget(self, action: #selector(colorWellChanged(_:)), for: .valueChanged)
@@ -41,17 +51,17 @@ class EditDrawingViewController: UIViewController {
         
         switch sender.state {
         case .began:
-            let firstPoint = sender.location(in: self.view)
+            let firstPoint = sender.location(in: self.drawingView)
             
             if eraserButton.isSelected {
                 currentDrawing.eraseStarted(at: firstPoint)
             } else {
                 let layer = currentDrawing.drawStarted(at: firstPoint, with: drawingColor)
-                view.layer.addSublayer(layer)
+                drawingView.layer.addSublayer(layer)
             }
             
         case .changed:
-            let point = sender.location(in: self.view)
+            let point = sender.location(in: self.drawingView)
             
             if eraserButton.isSelected {
                 currentDrawing.eraseMoved(to: point)
@@ -95,16 +105,44 @@ class EditDrawingViewController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
-        var ref: DocumentReference? = nil
-        print(currentDrawing.dictionary)
-        ref = db.collection("drawing").addDocument(data: currentDrawing.dictionary) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                print("Document added with ID: \(ref!.documentID)")
+        loadingIndicator.startAnimating()
+        saveButton.isEnabled = false
+        saveButton.tintColor = .clear
+
+        if let drawingID = currentDrawing.id {
+            db.collection("drawing").document(drawingID).updateData(currentDrawing.dictionary) { err in
+                    if let err = err {
+                        print("Error updating document: \(err)")
+                    } else {
+                        print("Document successfully updated")
+                        self.loadingIndicator.stopAnimating()
+                        self.saveButton.isEnabled = true
+                        self.saveButton.tintColor = .systemGreen
+
+                        self.dismiss(animated: true, completion: nil)
+                    }
             }
+
+        } else {
+            db.collection("drawing").addDocument(data: currentDrawing.dictionary) { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                } else {
+                    self.loadingIndicator.stopAnimating()
+                    self.saveButton.isEnabled = true
+                    self.saveButton.tintColor = .systemGreen
+
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+
         }
         
+        print(currentDrawing.dictionary)
+        
+    }
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 

@@ -92,6 +92,16 @@ class DrawingsDisplayViewController: UITableViewController, DrawingDeleteDelegat
         100
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let drawing = drawings[indexPath.row]
+        
+        guard let editDrawingVC = storyboard?.instantiateViewController(identifier: "editDrawingVC") as? EditDrawingViewController else {
+            return
+        }
+        editDrawingVC.currentDrawing = drawing
+        present(editDrawingVC, animated: true, completion: nil)
+    }
+    
     func didDeleteDrawing(_ drawing: Drawing) {
         guard let drawingID = drawing.id else {
             return

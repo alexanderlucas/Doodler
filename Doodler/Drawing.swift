@@ -33,13 +33,12 @@ class Drawing {
             thumbnailLayer.strokeColor = mark.erased ? UIColor.clear.cgColor : mark.color.cgColor
 
             thumbnailLayer.path = thumbnailPath.cgPath
-
-            
         }
 
         thumbnailLayer.transform = CATransform3DMakeScale(0.1, 0.1, 1)
         return thumbnailLayer
     }
+    
     
     init() {
         
@@ -101,6 +100,16 @@ class Drawing {
     
     func eraseEnded() {
         
+    }
+    
+    var markLayers: [CAShapeLayer] {
+        var layers = [CAShapeLayer]()
+        for mark in marks {
+            if !mark.erased {
+                layers.append(mark.drawingLayer)
+            }
+        }
+        return layers
     }
     
 }
