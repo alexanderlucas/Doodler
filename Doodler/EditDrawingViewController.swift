@@ -13,6 +13,8 @@ class EditDrawingViewController: UIViewController {
     
     @IBOutlet weak var drawingView: DrawingView!
     
+    var currentDrawing: Drawing!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -20,6 +22,8 @@ class EditDrawingViewController: UIViewController {
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action:#selector(handleScreenPan))
 
         drawingView.addGestureRecognizer(panGestureRecognizer)
+        
+        currentDrawing = Drawing()
         
     }
     
@@ -30,32 +34,41 @@ class EditDrawingViewController: UIViewController {
             let firstPoint = sender.location(in: self.drawingView)
             
             if segment.selectedSegmentIndex == 0 {
-                drawingView.drawStarted(at: firstPoint)
+                let layer = currentDrawing.drawStarted(at: firstPoint)
+                drawingView.layer.addSublayer(layer)
             } else {
-                drawingView.eraseStarted(at: firstPoint)
+                currentDrawing.eraseStarted(at: firstPoint)
             }
             
         case .changed:
             let point = sender.location(in: self.drawingView)
 
             if segment.selectedSegmentIndex == 0 {
-                drawingView.drawMoved(to: point)
+                currentDrawing.drawMoved(to: point)
             } else {
-                drawingView.eraseMoved(to: point)
+                currentDrawing.eraseMoved(to: point)
             }
 
         case .ended:
         
             if segment.selectedSegmentIndex == 0 {
-                drawingView.drawEnded()
+                currentDrawing.drawEnded()
             } else {
-                drawingView.eraseEnded()
+                currentDrawing.eraseEnded()
             }
             
         default: ()
         }
     }
 
+    @IBAction func scaleButtonPressed(_ sender: Any) {
+        var transform = CGAffineTransform.identity
+        transform = transform.scaledBy(x:  0.5, y: 0.5)
 
+        for mark in currentDrawing.marks {
+            mark.drawingLayer.transform = CATransform3DMakeScale(0.5, 0.5, 1)
+        }
+    }
+    
 }
 

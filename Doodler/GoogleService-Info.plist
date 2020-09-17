@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>903798553194-8bnf4td0mim1r8di0ef1te2i48vv2jgl.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.903798553194-8bnf4td0mim1r8di0ef1te2i48vv2jgl</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB8UumRf4YSy-L2RmbFy5T5PSezw4TfoVA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>903798553194</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>io.alexlucas.Doodler</string>
+	<key>PROJECT_ID</key>
+	<string>doodler-5bd2c</string>
+	<key>STORAGE_BUCKET</key>
+	<string>doodler-5bd2c.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:903798553194:ios:1e44f6af17ae0e61106813</string>
+	<key>DATABASE_URL</key>
+	<string>https://doodler-5bd2c.firebaseio.com</string>
+</dict>
+</plist>

@@ -3,11 +3,20 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C4127C52A81A8D234F502EB /* Pods_Doodler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C85E952C718A5B643E57257 /* Pods_Doodler.framework */; };
+		6D76544A55A429DB6991AEFE /* Pods_Doodler_DoodlerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87E7315AB8F46FB73826E7A4 /* Pods_Doodler_DoodlerUITests.framework */; };
+		E61769237679676BFFA9775E /* Pods_DoodlerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807A2CB33B84589D6DAB9240 /* Pods_DoodlerTests.framework */; };
 		F0910E0325129F20008EB227 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0910E0225129F20008EB227 /* DrawingView.swift */; };
+		F0910E08251380CD008EB227 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0910E07251380CD008EB227 /* GoogleService-Info.plist */; };
+		F0910E09251380CD008EB227 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0910E07251380CD008EB227 /* GoogleService-Info.plist */; };
+		F0910E0A251380CD008EB227 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0910E07251380CD008EB227 /* GoogleService-Info.plist */; };
+		F09729B0251383CB005D0935 /* Drawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09729AF251383CB005D0935 /* Drawing.swift */; };
+		F09729B1251383CB005D0935 /* Drawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09729AF251383CB005D0935 /* Drawing.swift */; };
+		F09729B2251383CB005D0935 /* Drawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09729AF251383CB005D0935 /* Drawing.swift */; };
 		F0D1913B2512999A0044CC2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D1913A2512999A0044CC2C /* AppDelegate.swift */; };
 		F0D1913D2512999A0044CC2C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D1913C2512999A0044CC2C /* SceneDelegate.swift */; };
 		F0D1913F2512999A0044CC2C /* EditDrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D1913E2512999A0044CC2C /* EditDrawingViewController.swift */; };
@@ -36,7 +45,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C85E952C718A5B643E57257 /* Pods_Doodler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Doodler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E713D110ADFFAB19A2622E9 /* Pods-Doodler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Doodler.debug.xcconfig"; path = "Target Support Files/Pods-Doodler/Pods-Doodler.debug.xcconfig"; sourceTree = "<group>"; };
+		37088F0A17F3EFCCB4D7CC2E /* Pods-Doodler-DoodlerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Doodler-DoodlerUITests.release.xcconfig"; path = "Target Support Files/Pods-Doodler-DoodlerUITests/Pods-Doodler-DoodlerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		807A2CB33B84589D6DAB9240 /* Pods_DoodlerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoodlerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8646EF978341B362458AFDD3 /* Pods-Doodler-DoodlerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Doodler-DoodlerUITests.debug.xcconfig"; path = "Target Support Files/Pods-Doodler-DoodlerUITests/Pods-Doodler-DoodlerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		87E7315AB8F46FB73826E7A4 /* Pods_Doodler_DoodlerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Doodler_DoodlerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2C6CC904779C5465F6FFB75 /* Pods-Doodler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Doodler.release.xcconfig"; path = "Target Support Files/Pods-Doodler/Pods-Doodler.release.xcconfig"; sourceTree = "<group>"; };
+		A9FC722D79BFFC2B99B02891 /* Pods-DoodlerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoodlerTests.release.xcconfig"; path = "Target Support Files/Pods-DoodlerTests/Pods-DoodlerTests.release.xcconfig"; sourceTree = "<group>"; };
 		F0910E0225129F20008EB227 /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
+		F0910E07251380CD008EB227 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F09729AF251383CB005D0935 /* Drawing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawing.swift; sourceTree = "<group>"; };
 		F0D191372512999A0044CC2C /* Doodler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Doodler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0D1913A2512999A0044CC2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0D1913C2512999A0044CC2C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +70,7 @@
 		F0D191582512999D0044CC2C /* DoodlerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoodlerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0D1915C2512999D0044CC2C /* DoodlerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoodlerUITests.swift; sourceTree = "<group>"; };
 		F0D1915E2512999D0044CC2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD2DF3E11ED0C67A3DB4B13C /* Pods-DoodlerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoodlerTests.debug.xcconfig"; path = "Target Support Files/Pods-DoodlerTests/Pods-DoodlerTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C4127C52A81A8D234F502EB /* Pods_Doodler.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E61769237679676BFFA9775E /* Pods_DoodlerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,12 +94,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D76544A55A429DB6991AEFE /* Pods_Doodler_DoodlerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B8E3C86C0E315387CBD441F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1E713D110ADFFAB19A2622E9 /* Pods-Doodler.debug.xcconfig */,
+				A2C6CC904779C5465F6FFB75 /* Pods-Doodler.release.xcconfig */,
+				8646EF978341B362458AFDD3 /* Pods-Doodler-DoodlerUITests.debug.xcconfig */,
+				37088F0A17F3EFCCB4D7CC2E /* Pods-Doodler-DoodlerUITests.release.xcconfig */,
+				FD2DF3E11ED0C67A3DB4B13C /* Pods-DoodlerTests.debug.xcconfig */,
+				A9FC722D79BFFC2B99B02891 /* Pods-DoodlerTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		729B8CB499933275328F761F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0C85E952C718A5B643E57257 /* Pods_Doodler.framework */,
+				87E7315AB8F46FB73826E7A4 /* Pods_Doodler_DoodlerUITests.framework */,
+				807A2CB33B84589D6DAB9240 /* Pods_DoodlerTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F0D1912E2512999A0044CC2C = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +131,8 @@
 				F0D191502512999D0044CC2C /* DoodlerTests */,
 				F0D1915B2512999D0044CC2C /* DoodlerUITests */,
 				F0D191382512999A0044CC2C /* Products */,
+				3B8E3C86C0E315387CBD441F /* Pods */,
+				729B8CB499933275328F761F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,10 +153,12 @@
 				F0D1913C2512999A0044CC2C /* SceneDelegate.swift */,
 				F0D1913E2512999A0044CC2C /* EditDrawingViewController.swift */,
 				F0910E0225129F20008EB227 /* DrawingView.swift */,
+				F09729AF251383CB005D0935 /* Drawing.swift */,
 				F0D191402512999A0044CC2C /* Main.storyboard */,
 				F0D191432512999C0044CC2C /* Assets.xcassets */,
 				F0D191452512999C0044CC2C /* LaunchScreen.storyboard */,
 				F0D191482512999C0044CC2C /* Info.plist */,
+				F0910E07251380CD008EB227 /* GoogleService-Info.plist */,
 			);
 			path = Doodler;
 			sourceTree = "<group>";
@@ -138,9 +188,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F0D191612512999D0044CC2C /* Build configuration list for PBXNativeTarget "Doodler" */;
 			buildPhases = (
+				43EF16C1BE7BA9307CCA978F /* [CP] Check Pods Manifest.lock */,
 				F0D191332512999A0044CC2C /* Sources */,
 				F0D191342512999A0044CC2C /* Frameworks */,
 				F0D191352512999A0044CC2C /* Resources */,
+				04324BBC368EC0AA16686C94 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -155,6 +207,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F0D191642512999D0044CC2C /* Build configuration list for PBXNativeTarget "DoodlerTests" */;
 			buildPhases = (
+				BD4D32B590A27F71FFA705BC /* [CP] Check Pods Manifest.lock */,
 				F0D191492512999D0044CC2C /* Sources */,
 				F0D1914A2512999D0044CC2C /* Frameworks */,
 				F0D1914B2512999D0044CC2C /* Resources */,
@@ -173,9 +226,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F0D191672512999D0044CC2C /* Build configuration list for PBXNativeTarget "DoodlerUITests" */;
 			buildPhases = (
+				0C5D2C58E7077BBE97CCCBDA /* [CP] Check Pods Manifest.lock */,
 				F0D191542512999D0044CC2C /* Sources */,
 				F0D191552512999D0044CC2C /* Frameworks */,
 				F0D191562512999D0044CC2C /* Resources */,
+				8535E71F0CD12BA4451FB927 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -235,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0D191472512999C0044CC2C /* LaunchScreen.storyboard in Resources */,
+				F0910E08251380CD008EB227 /* GoogleService-Info.plist in Resources */,
 				F0D191442512999C0044CC2C /* Assets.xcassets in Resources */,
 				F0D191422512999A0044CC2C /* Main.storyboard in Resources */,
 			);
@@ -244,6 +300,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0910E09251380CD008EB227 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,10 +308,114 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0910E0A251380CD008EB227 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		04324BBC368EC0AA16686C94 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Doodler/Pods-Doodler-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Doodler/Pods-Doodler-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Doodler/Pods-Doodler-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0C5D2C58E7077BBE97CCCBDA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Doodler-DoodlerUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		43EF16C1BE7BA9307CCA978F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Doodler-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8535E71F0CD12BA4451FB927 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Doodler-DoodlerUITests/Pods-Doodler-DoodlerUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Doodler-DoodlerUITests/Pods-Doodler-DoodlerUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Doodler-DoodlerUITests/Pods-Doodler-DoodlerUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BD4D32B590A27F71FFA705BC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DoodlerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F0D191332512999A0044CC2C /* Sources */ = {
@@ -265,6 +426,7 @@
 				F0D1913B2512999A0044CC2C /* AppDelegate.swift in Sources */,
 				F0D1913D2512999A0044CC2C /* SceneDelegate.swift in Sources */,
 				F0910E0325129F20008EB227 /* DrawingView.swift in Sources */,
+				F09729B0251383CB005D0935 /* Drawing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +434,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F09729B1251383CB005D0935 /* Drawing.swift in Sources */,
 				F0D191522512999D0044CC2C /* DoodlerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,6 +443,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F09729B2251383CB005D0935 /* Drawing.swift in Sources */,
 				F0D1915D2512999D0044CC2C /* DoodlerUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,6 +601,7 @@
 		};
 		F0D191622512999D0044CC2C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E713D110ADFFAB19A2622E9 /* Pods-Doodler.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -458,6 +623,7 @@
 		};
 		F0D191632512999D0044CC2C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2C6CC904779C5465F6FFB75 /* Pods-Doodler.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -479,6 +645,7 @@
 		};
 		F0D191652512999D0044CC2C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FD2DF3E11ED0C67A3DB4B13C /* Pods-DoodlerTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -501,6 +668,7 @@
 		};
 		F0D191662512999D0044CC2C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A9FC722D79BFFC2B99B02891 /* Pods-DoodlerTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -523,6 +691,7 @@
 		};
 		F0D191682512999D0044CC2C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8646EF978341B362458AFDD3 /* Pods-Doodler-DoodlerUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -543,6 +712,7 @@
 		};
 		F0D191692512999D0044CC2C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 37088F0A17F3EFCCB4D7CC2E /* Pods-Doodler-DoodlerUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
