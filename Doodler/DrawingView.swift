@@ -9,20 +9,20 @@ import UIKit
 
 class DrawingView: UIView {
     
-    var layers = [CAShapeLayer]()
-    
-    let path = UIBezierPath()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-
+        sharedInit()
     }
-    
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
+        sharedInit()
+    }
+    
+    func sharedInit() {
+//        layer.borderColor = UIColor.systemGray2.cgColor
+//        layer.borderWidth = 1
+//        layer.cornerRadius = 16
     }
     
     

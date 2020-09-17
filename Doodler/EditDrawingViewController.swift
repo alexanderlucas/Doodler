@@ -6,14 +6,18 @@
 //
 
 import UIKit
+import FirebaseCore
+import FirebaseFirestore
+import FirebaseFirestoreSwift
+
 
 class EditDrawingViewController: UIViewController {
     
     @IBOutlet weak var segment: UISegmentedControl!
     
-    @IBOutlet weak var drawingView: DrawingView!
-    
     var currentDrawing: Drawing!
+    
+    let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +25,7 @@ class EditDrawingViewController: UIViewController {
         
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action:#selector(handleScreenPan))
 
-        drawingView.addGestureRecognizer(panGestureRecognizer)
+        view.addGestureRecognizer(panGestureRecognizer)
         
         currentDrawing = Drawing()
         
@@ -31,17 +35,17 @@ class EditDrawingViewController: UIViewController {
         
         switch sender.state {
         case .began:
-            let firstPoint = sender.location(in: self.drawingView)
+            let firstPoint = sender.location(in: self.view)
             
             if segment.selectedSegmentIndex == 0 {
                 let layer = currentDrawing.drawStarted(at: firstPoint)
-                drawingView.layer.addSublayer(layer)
+                view.layer.addSublayer(layer)
             } else {
                 currentDrawing.eraseStarted(at: firstPoint)
             }
             
         case .changed:
-            let point = sender.location(in: self.drawingView)
+            let point = sender.location(in: self.view)
 
             if segment.selectedSegmentIndex == 0 {
                 currentDrawing.drawMoved(to: point)
@@ -70,5 +74,17 @@ class EditDrawingViewController: UIViewController {
         }
     }
     
+    @IBAction func saveButtonPressed(_ sender: Any) {
+        var ref: DocumentReference? = nil
+        print(currentDrawing.dictionary)
+        ref = db.collection("drawing").addDocument(data: currentDrawing.dictionary) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+            }
+        }
+
+    }
 }
 
