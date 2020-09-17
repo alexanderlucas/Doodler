@@ -112,20 +112,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="j7m-Ge-WQU">
-                                <rect key="frame" x="153.5" y="767.5" width="107" height="32"/>
-                                <segments>
-                                    <segment title="draw"/>
-                                    <segment title="erase"/>
-                                </segments>
-                            </segmentedControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lWG-eg-cYR">
+                                <rect key="frame" x="0.0" y="56" width="414" height="786"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eGJ-rA-1tt">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" systemColor="systemGreenColor"/>
                                 <color key="barTintColor" systemColor="systemBackgroundColor"/>
                                 <items>
                                     <navigationItem id="JuD-0G-tQC">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="7W7-b7-Aeu"/>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="7W7-b7-Aeu">
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="nQ3-8i-9nv">
                                             <connections>
                                                 <action selector="saveButtonPressed:" destination="BYZ-38-t0r" id="dnV-nL-88W"/>
@@ -134,23 +134,36 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G8i-2V-VrP">
-                                <rect key="frame" x="20" y="768" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vAq-tW-yNz">
+                                <rect key="frame" x="20" y="771" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="eraser"/>
+                                <connections>
+                                    <action selector="eraserButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="89f-Pr-tcI"/>
+                                </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hiP-EH-sIT" customClass="UIColorWell">
+                                <rect key="frame" x="364" y="776" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="j7m-Ge-WQU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ByK-VD-31V"/>
                             <constraint firstItem="eGJ-rA-1tt" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="E9E-9K-cfS"/>
                             <constraint firstItem="eGJ-rA-1tt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="h51-0O-8Kg"/>
+                            <constraint firstItem="lWG-eg-cYR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hGq-pp-KAR"/>
+                            <constraint firstItem="lWG-eg-cYR" firstAttribute="top" secondItem="eGJ-rA-1tt" secondAttribute="bottom" id="j6p-Hh-37L"/>
                             <constraint firstItem="eGJ-rA-1tt" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="l36-Xi-OuO"/>
+                            <constraint firstItem="lWG-eg-cYR" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="nV3-F6-V5a"/>
+                            <constraint firstAttribute="bottom" secondItem="lWG-eg-cYR" secondAttribute="bottom" id="vLY-On-JsW"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="segment" destination="j7m-Ge-WQU" id="Aa4-uB-scD"/>
+                        <outlet property="colorWell" destination="hiP-EH-sIT" id="J85-Dz-r5E"/>
+                        <outlet property="eraserButton" destination="vAq-tW-yNz" id="pLW-bQ-FhM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -177,12 +190,16 @@
         </scene>
     </scenes>
     <resources>
+        <image name="eraser" width="64" height="64"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -9,6 +9,7 @@ import UIKit
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
+
 class Drawing {
     
     var startDate: Date?
@@ -23,16 +24,18 @@ class Drawing {
     }
     
     var thumbnail: CAShapeLayer {
-        let paths = marks.map({ $0.path })
         let thumbnailPath = UIBezierPath()
-
-        for path in paths {
-            thumbnailPath.append(path)
-        }
         let thumbnailLayer = CAShapeLayer()
-        thumbnailLayer.path = thumbnailPath.cgPath
         thumbnailLayer.fillColor = nil
-        thumbnailLayer.strokeColor = UIColor.label.cgColor
+
+        for mark in marks {
+            thumbnailPath.append(mark.path)
+            thumbnailLayer.strokeColor = mark.erased ? UIColor.clear.cgColor : mark.color.cgColor
+
+            thumbnailLayer.path = thumbnailPath.cgPath
+
+            
+        }
 
         thumbnailLayer.transform = CATransform3DMakeScale(0.1, 0.1, 1)
         return thumbnailLayer
@@ -56,12 +59,12 @@ class Drawing {
     }
 
     
-    func drawStarted(at point: CGPoint) -> CAShapeLayer {
+    func drawStarted(at point: CGPoint, with color: UIColor) -> CAShapeLayer {
         
         if marks.count == 0 {
             startDate = Date()
         }
-        let mark = Mark(startingPoint: point)
+        let mark = Mark(startingPoint: point, color: color)
         
         marks.append(mark)
         
@@ -104,11 +107,13 @@ class Drawing {
 
 
 class Mark {
+    
     var startDate: Date
     var pathPoints: [TimeInterval: CGPoint]
     var erased: Bool
     var path: UIBezierPath
     var drawingLayer: CAShapeLayer
+    var color: UIColor
     
     var dictionary: [String: Any] {
         [
@@ -121,32 +126,35 @@ class Mark {
                 
                 ]
             }),
-            "erased": erased
+            "erased": erased,
+            "color": color.hexValue
         ]
     }
     
     
-    init(startingPoint: CGPoint) {
-        startDate = Date()
-        pathPoints = [TimeInterval: CGPoint]()
+    init(startingPoint: CGPoint, color: UIColor) {
+        self.startDate = Date()
+        self.pathPoints = [TimeInterval: CGPoint]()
         pathPoints[0] = startingPoint
-        erased = false
+        self.erased = false
+        self.color = color
         path = UIBezierPath()
         path.move(to: startingPoint)
         
-        drawingLayer = CAShapeLayer()
+        self.drawingLayer = CAShapeLayer()
         drawingLayer.path = path.cgPath
         drawingLayer.fillColor = nil
-        drawingLayer.strokeColor = UIColor.label.cgColor
+        drawingLayer.strokeColor = color.cgColor
 //        let thickness = Int.random(in: 0..<10)
 //        drawingLayer.lineWidth = CGFloat(thickness)
         
     }
     
-    init(startDate: Date, points: [TimeInterval: CGPoint], erased: Bool) {
+    init(startDate: Date, points: [TimeInterval: CGPoint], color: UIColor, erased: Bool) {
         self.startDate = startDate
         self.pathPoints = points
         self.erased = erased
+        self.color = color
         drawingLayer = CAShapeLayer()
         path = UIBezierPath()
 
@@ -158,8 +166,7 @@ class Mark {
                 drawingLayer.fillColor = nil
             }
             
-            drawingLayer.strokeColor = erased ? UIColor.clear.cgColor : UIColor.label.cgColor
-            
+            drawingLayer.strokeColor = erased ? UIColor.clear.cgColor : color.cgColor
             
             path.addLine(to: point.value)
             drawingLayer.path = path.cgPath
@@ -172,6 +179,9 @@ class Mark {
         guard let points = dictionary["points"] as? [[String: Any]] else {print("first m"); return nil }
                 
         let erased: Bool = dictionary["erased"] as? Bool ?? false
+        let colorString: String = dictionary["color"] as? String ?? "#000000"
+        let color = UIColor(hex: colorString)!
+        
         var pathPoints = [TimeInterval: CGPoint]()
         
         for point in points {
@@ -181,7 +191,7 @@ class Mark {
             pathPoints[timestamp] = cgPoint
         }
          
-        self.init(startDate: startDate.dateValue(), points: pathPoints, erased: erased)
+        self.init(startDate: startDate.dateValue(), points: pathPoints, color: color, erased: erased)
         
     }
 
@@ -201,3 +211,62 @@ class Mark {
     
 }
 
+/*
+ source: https://www.hackingwithswift.com/example-code/uicolor/how-to-convert-a-hex-color-to-a-uicolor
+ */
+extension UIColor {
+    public convenience init?(hex: String) {
+        let r, g, b, a: CGFloat
+
+        if hex.hasPrefix("#") {
+            let start = hex.index(hex.startIndex, offsetBy: 1)
+            let hexColor = String(hex[start...])
+
+            if hexColor.count == 8 {
+                let scanner = Scanner(string: hexColor)
+                var hexNumber: UInt64 = 0
+
+                if scanner.scanHexInt64(&hexNumber) {
+                    r = CGFloat((hexNumber & 0xff000000) >> 24) / 255
+                    g = CGFloat((hexNumber & 0x00ff0000) >> 16) / 255
+                    b = CGFloat((hexNumber & 0x0000ff00) >> 8) / 255
+                    a = CGFloat(hexNumber & 0x000000ff) / 255
+
+                    self.init(red: r, green: g, blue: b, alpha: a)
+                    return
+                }
+            } else if hexColor.count == 6 {
+                let scanner = Scanner(string: hexColor)
+                var hexNumber: UInt64 = 0
+
+                if scanner.scanHexInt64(&hexNumber) {
+                    r = CGFloat((hexNumber & 0xff000000) >> 24) / 255
+                    g = CGFloat((hexNumber & 0x00ff0000) >> 16) / 255
+                    b = CGFloat((hexNumber & 0x0000ff00) >> 8) / 255
+                    a = 1
+
+                    self.init(red: r, green: g, blue: b, alpha: a)
+                    return
+                }
+            }
+        }
+
+        return nil
+    }
+    
+    var hexValue: String {
+        var color = self
+
+        if color.cgColor.numberOfComponents < 4 {
+            let c = color.cgColor.components!
+            color = UIColor(red: c[0], green: c[0], blue: c[0], alpha: c[1])
+        }
+        if color.cgColor.colorSpace!.model != .rgb {
+            return "#FFFFFF"
+        }
+        let c = color.cgColor.components!
+        return String(format: "#%02X%02X%02X", Int(c[0]*255.0), Int(c[1]*255.0), Int(c[2]*255.0))
+    }
+
+
+}
