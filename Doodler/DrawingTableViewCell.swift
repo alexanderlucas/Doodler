@@ -19,7 +19,10 @@ class DrawingTableViewCell: UITableViewCell {
     var drawing: Drawing! {
         didSet {
             dateLabel?.text = drawing.id
-            thumbnailView.layer.addSublayer(drawing.thumbnail)
+            for thumbnailLayer in drawing.thumbnail {
+                thumbnailView.layer.addSublayer(thumbnailLayer)
+
+            }
         }
     }
     var deleteDelegate: DrawingDeleteDelegate!
