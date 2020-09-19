@@ -224,6 +224,8 @@ class Mark {
 }
 
 /*
+ source: https://theswiftdev.com/uicolor-best-practices-in-swift/
+ 
  */
 extension UIColor {
     public convenience init(hex: Int, alpha: CGFloat = 1.0) {
@@ -265,13 +267,13 @@ extension UIColor {
                let greenHex = String(hex[startIndex..<endIndex])
                let blueHex = String(hex[endIndex...])
 
-               var redInt: CUnsignedInt = 0
-               var greenInt: CUnsignedInt = 0
-               var blueInt: CUnsignedInt = 0
+               var redInt: UInt64 = 0
+               var greenInt: UInt64 = 0
+               var blueInt: UInt64 = 0
 
-               Scanner(string: redHex).scanHexInt32(&redInt)
-               Scanner(string: greenHex).scanHexInt32(&greenInt)
-               Scanner(string: blueHex).scanHexInt32(&blueInt)
+               Scanner(string: redHex).scanHexInt64(&redInt)
+               Scanner(string: greenHex).scanHexInt64(&greenInt)
+               Scanner(string: blueHex).scanHexInt64(&blueInt)
 
                self.init(red: CGFloat(redInt) / 255.0,
                          green: CGFloat(greenInt) / 255.0,
