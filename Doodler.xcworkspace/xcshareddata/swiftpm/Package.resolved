@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "RoundSlider",
+        "repositoryURL": "https://github.com/alexanderlucas/swift-round-slider",
+        "state": {
+          "branch": null,
+          "revision": "0ad8f05eca4923a173e4a4209f9705e73c82228f",
+          "version": "1.0.7"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

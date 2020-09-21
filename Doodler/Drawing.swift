@@ -33,6 +33,7 @@ class Drawing {
             let markLayer = CAShapeLayer()
             markLayer.fillColor = nil
             markLayer.strokeColor = mark.erased ? UIColor.clear.cgColor : mark.color.cgColor
+            markLayer.lineWidth = mark.thickness
 
             markPath.append(mark.path)
 
@@ -188,7 +189,8 @@ class Mark {
             }
             
             drawingLayer.strokeColor = erased ? UIColor.clear.cgColor : color.cgColor
-            
+            drawingLayer.lineWidth = thickness
+
             path.addLine(to: points[time]!)
             drawingLayer.path = path.cgPath
         }
