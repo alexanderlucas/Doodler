@@ -166,8 +166,6 @@ class Mark {
         drawingLayer.fillColor = nil
         drawingLayer.strokeColor = color.cgColor
         drawingLayer.lineWidth = thickness
-//        let thickness = Int.random(in: 0..<10)
-//        drawingLayer.lineWidth = CGFloat(thickness)
         
     }
     
