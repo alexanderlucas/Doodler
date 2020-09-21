@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DrawingTableViewCell: UITableViewCell {
+class DrawingCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var thumbnailView: UIView!
