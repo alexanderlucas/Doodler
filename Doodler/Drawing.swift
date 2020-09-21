@@ -54,7 +54,7 @@ class Drawing {
         self.id = id
         self.startDate = startDate
         self.endDate = endDate
-        self.marks = marks.map({ Mark(dictionary: $0)! })
+        self.marks = marks.map({ Mark(dictionary: $0)! }).sorted(by: { $0.startDate < $1.startDate })
     }
 
     

@@ -39,7 +39,7 @@ class EditDrawingViewController: UIViewController, UIPopoverPresentationControll
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+                
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action:#selector(handleScreenPan))
         
         drawingView.addGestureRecognizer(panGestureRecognizer)
@@ -51,7 +51,7 @@ class EditDrawingViewController: UIViewController, UIPopoverPresentationControll
         } else {
             for layer in currentDrawing.markLayers {
                 layers.append(layer)
-                view.layer.addSublayer(layer)
+                drawingView.layer.addSublayer(layer)
             }
             
         }
