@@ -13,12 +13,14 @@ import FirebaseFirestoreSwift
 class Drawing {
     
     var startDate: Date?
+    var endDate: Date?
     var marks = [Mark]()
     var id: String?
     
     var dictionary: [String: Any] {
         [
             "startDate": startDate!,
+            "endDate": endDate!,
             "marks": marks.map({ $0.dictionary })
         ]
     }
@@ -36,7 +38,7 @@ class Drawing {
 
             markLayer.path = markPath.cgPath
             
-            markLayer.transform = CATransform3DMakeScale(0.1, 0.1, 1)
+            markLayer.transform = CATransform3DMakeScale(0.4, 0.4, 1)
             thumbnailLayers.append(markLayer)
         }
 
@@ -48,17 +50,18 @@ class Drawing {
         
     }
     
-    init(id: String, startDate: Date, marks: [[String: Any]]) {
+    init(id: String, startDate: Date, endDate: Date, marks: [[String: Any]]) {
         self.id = id
         self.startDate = startDate
+        self.endDate = endDate
         self.marks = marks.map({ Mark(dictionary: $0)! })
     }
 
     
     convenience init?(dictionary: [String : Any], id: String) {
-        guard let startDate = dictionary["startDate"] as? Timestamp, let marks = dictionary["marks"] as? [[String: Any]] else { return nil }
+        guard let startDate = dictionary["startDate"] as? Timestamp, let endDate = dictionary["endDate"] as? Timestamp, let marks = dictionary["marks"] as? [[String: Any]] else { return nil }
          
-        self.init(id: id, startDate: startDate.dateValue(), marks: marks)
+        self.init(id: id, startDate: startDate.dateValue(), endDate: endDate.dateValue(), marks: marks)
     }
 
     
@@ -83,7 +86,7 @@ class Drawing {
     }
     
     func drawEnded() {
-        
+        endDate = Date()
     }
     
     func eraseStarted(at point: CGPoint) {
@@ -103,7 +106,7 @@ class Drawing {
     }
     
     func eraseEnded() {
-        
+        endDate = Date()
     }
     
     var markLayers: [CAShapeLayer] {

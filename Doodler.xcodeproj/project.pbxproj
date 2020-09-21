@@ -20,7 +20,7 @@
 		F09729B72513B768005D0935 /* DrawingsDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09729B62513B768005D0935 /* DrawingsDisplayViewController.swift */; };
 		F09729B82513B768005D0935 /* DrawingsDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09729B62513B768005D0935 /* DrawingsDisplayViewController.swift */; };
 		F09729B92513B768005D0935 /* DrawingsDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09729B62513B768005D0935 /* DrawingsDisplayViewController.swift */; };
-		F0972A0E2513C8AE005D0935 /* DrawingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0972A0D2513C8AE005D0935 /* DrawingTableViewCell.swift */; };
+		F0972A0E2513C8AE005D0935 /* DrawingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0972A0D2513C8AE005D0935 /* DrawingCollectionViewCell.swift */; };
 		F0D1913B2512999A0044CC2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D1913A2512999A0044CC2C /* AppDelegate.swift */; };
 		F0D1913D2512999A0044CC2C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D1913C2512999A0044CC2C /* SceneDelegate.swift */; };
 		F0D1913F2512999A0044CC2C /* EditDrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D1913E2512999A0044CC2C /* EditDrawingViewController.swift */; };
@@ -61,7 +61,7 @@
 		F0910E07251380CD008EB227 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F09729AF251383CB005D0935 /* Drawing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawing.swift; sourceTree = "<group>"; };
 		F09729B62513B768005D0935 /* DrawingsDisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingsDisplayViewController.swift; sourceTree = "<group>"; };
-		F0972A0D2513C8AE005D0935 /* DrawingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingTableViewCell.swift; sourceTree = "<group>"; };
+		F0972A0D2513C8AE005D0935 /* DrawingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCollectionViewCell.swift; sourceTree = "<group>"; };
 		F0D191372512999A0044CC2C /* Doodler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Doodler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0D1913A2512999A0044CC2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0D1913C2512999A0044CC2C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -160,7 +160,7 @@
 				F0D1913E2512999A0044CC2C /* EditDrawingViewController.swift */,
 				F09729B62513B768005D0935 /* DrawingsDisplayViewController.swift */,
 				F0910E0225129F20008EB227 /* DrawingView.swift */,
-				F0972A0D2513C8AE005D0935 /* DrawingTableViewCell.swift */,
+				F0972A0D2513C8AE005D0935 /* DrawingCollectionViewCell.swift */,
 				F09729AF251383CB005D0935 /* Drawing.swift */,
 				F0D191402512999A0044CC2C /* Main.storyboard */,
 				F0D191432512999C0044CC2C /* Assets.xcassets */,
@@ -434,7 +434,7 @@
 				F0D1913B2512999A0044CC2C /* AppDelegate.swift in Sources */,
 				F0D1913D2512999A0044CC2C /* SceneDelegate.swift in Sources */,
 				F0910E0325129F20008EB227 /* DrawingView.swift in Sources */,
-				F0972A0E2513C8AE005D0935 /* DrawingTableViewCell.swift in Sources */,
+				F0972A0E2513C8AE005D0935 /* DrawingCollectionViewCell.swift in Sources */,
 				F09729B72513B768005D0935 /* DrawingsDisplayViewController.swift in Sources */,
 				F09729B0251383CB005D0935 /* Drawing.swift in Sources */,
 			);

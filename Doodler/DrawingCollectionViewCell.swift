@@ -1,5 +1,5 @@
 //
-//  DrawingTableViewCell.swift
+//  DrawingCollectionViewCell.swift
 //  Doodler
 //
 //  Created by Alex Lucas on 9/17/20.
@@ -9,16 +9,21 @@ import UIKit
 
 class DrawingCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var view: UIView!
     @IBOutlet weak var thumbnailView: UIView!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var deleteView: UIView!
-    @IBOutlet weak var deleteLabel: UILabel!
-    @IBOutlet weak var deleteTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var elapsedLabel: UILabel!
     
     var drawing: Drawing! {
         didSet {
-            dateLabel?.text = drawing.id
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd hh:mm"
+            let date = formatter.string(from: drawing.startDate!)
+            if let endDate = drawing.endDate {
+                let timeElapsed = endDate.timeIntervalSince(drawing.startDate!)
+                elapsedLabel.text = "\(timeElapsed)s"
+            }
+
+            dateLabel?.text = date
             for thumbnailLayer in drawing.thumbnail {
                 thumbnailView.layer.addSublayer(thumbnailLayer)
 
@@ -30,94 +35,47 @@ class DrawingCollectionViewCell: UICollectionViewCell {
     var initialTouchPoint: CGPoint?
     var initialFrame: CGRect?
 
+    private var shadowLayer: CAShapeLayer!
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        thumbnailView.layer.cornerRadius = 12
+                
+
+        if shadowLayer == nil {
+            shadowLayer = CAShapeLayer()
+            shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: 12).cgPath
+            shadowLayer.fillColor = UIColor.white.cgColor
+
+            shadowLayer.shadowColor = UIColor.systemGray2.cgColor
+            shadowLayer.shadowPath = shadowLayer.path
+            shadowLayer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+            shadowLayer.shadowOpacity = 0.8
+            shadowLayer.shadowRadius = 6
+
+            layer.insertSublayer(shadowLayer, at: 0)
+            //layer.insertSublayer(shadowLayer, below: nil) // also works
+        }
+    }
     
+    override func prepareForReuse() {
+        guard let superLayers = thumbnailView.layer.sublayers else {
+            return
+        }
+        for l in superLayers {
+            l.removeFromSuperlayer()
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        print("awakefromenib")
         
-        let pan = UIPanGestureRecognizer(target: self, action: #selector(swipe))
-        
-        pan.delegate = self
-        view.addGestureRecognizer(pan)
-        
+        thumbnailView.layer.cornerRadius = 12
+                
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
-    }
-
-    @objc func swipe(_ sender: UIScreenEdgePanGestureRecognizer) {
-        let touchPoint = sender.location(in: self.view.window)
-        
-        if sender.state == .began {
-            initialTouchPoint = touchPoint
-            initialFrame = view.frame
-            
-        }
-        let half = initialFrame!.width / 2
-        if sender.state == .changed {
-            let diff =  initialTouchPoint!.x - touchPoint.x
-            if diff > 0 {
-                self.view.frame = .init(x: initialFrame!.minX - diff , y: initialFrame!.minY, width: self.view.frame.width, height: self.view.frame.height)
-                
-                if diff > half {
-                    UIView.animate(withDuration: 0.2) {
-                        self.deleteTrailingConstraint.constant = (diff - self.deleteLabel.frame.width - 10)
-                        self.view.layoutIfNeeded()
-                    }
-                }
-                else {
-                    UIView.animate(withDuration: 0.2) {
-                        self.deleteTrailingConstraint.constant = 10
-                        self.view.layoutIfNeeded()
-
-                    }
-                }
-            }
-            
-            
-           
-        }
-        if sender.state == .ended || sender.state == .cancelled {
-            print("Touch Endeded")
-            let diff = touchPoint.x - initialTouchPoint!.x
-
-            print(diff)
-            if  initialTouchPoint!.x - touchPoint.x > half {
-                print("DELETE")
-                view.translatesAutoresizingMaskIntoConstraints = true
-                deleteView.translatesAutoresizingMaskIntoConstraints = true
-
-                let target = CGRect(x: self.initialFrame!.minX - self.initialFrame!.width - 50, y: self.initialFrame!.minY, width: self.view.frame.width, height: self.view.frame.height)
-                
-                UIView.animate(withDuration: 0.2, animations: {
-                    self.view.frame = target
-                    self.deleteLabel.alpha = 0
-                    self.deleteLabel.frame = .init(x: target.minX, y: target.midY - self.deleteLabel.frame.height / 2, width: self.deleteLabel.frame.width, height: self.deleteLabel.frame.height)
-                    self.deleteView.frame = .init(x: self.initialFrame!.minX, y: self.initialFrame!.minY, width: self.view.frame.width, height: 0)
-
-                }) { (moo) in
-                    self.view.alpha = 0
-                    self.deleteView.alpha = 0
-                    self.view.frame = self.initialFrame!
-                    self.deleteView.frame = self.initialFrame!
-                    self.deleteDelegate.didDeleteDrawing(self.drawing)
-                    
-                }
-                
-            } else {
-                UIView.animate(withDuration: 0.3, animations: {
-                    self.view.frame = self.initialFrame!
-                    self.deleteTrailingConstraint.constant = 10
-                    self.view.layoutIfNeeded()
-
-                })
-                
-            }
-        }
-        
-    }
 
 }

@@ -25,6 +25,8 @@ class EditDrawingViewController: UIViewController {
     
     let db = Firestore.firestore()
     
+    var layers: [CAShapeLayer]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -33,10 +35,13 @@ class EditDrawingViewController: UIViewController {
         
         drawingView.addGestureRecognizer(panGestureRecognizer)
         
+        layers = []
+        
         if currentDrawing == nil {
             currentDrawing = Drawing()
         } else {
             for layer in currentDrawing.markLayers {
+                layers.append(layer)
                 view.layer.addSublayer(layer)
             }
 
@@ -45,6 +50,43 @@ class EditDrawingViewController: UIViewController {
         colorWell.title = "Select Pencil Color"
         colorWell.addTarget(self, action: #selector(colorWellChanged(_:)), for: .valueChanged)
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
+    
+    func animateLayers() {
+        for layer in layers {
+            layer.strokeEnd = 0
+        }
+
+        let queue = OperationQueue()
+
+        for layer in layers {
+            
+            queue.addOperation {
+                let animation = CABasicAnimation(keyPath: "strokeEnd")
+
+                // Set the animation duration appropriately
+                animation.duration = 1.0
+
+                // Animate from 0 (no circle) to 1 (full circle)
+                animation.fromValue = 0
+                animation.toValue = 1
+
+                // Do a linear animation (i.e. the speed of the animation stays the same)
+                animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+
+                // Set the circleLayer's strokeEnd property to 1.0 now so that it's the
+                // right value when the animation ends.
+                layer.strokeEnd = 1.0
+
+                // Do the actual animation
+                layer.add(animation, forKey: "animatePath")
+            }
+        }
     }
     
     @objc func handleScreenPan(_ sender: UIGestureRecognizer) {
@@ -102,6 +144,10 @@ class EditDrawingViewController: UIViewController {
         
         sender.tintColor = sender.isSelected ? .systemGreen : .lightGray
         
+    }
+    @IBAction func replayButtonPressed(_ sender: Any) {
+        animateLayers()
+
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {

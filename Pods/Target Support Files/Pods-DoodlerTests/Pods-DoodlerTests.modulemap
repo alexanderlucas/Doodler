@@ -1,0 +1,6 @@
+framework module Pods_DoodlerTests {
+  umbrella header "Pods-DoodlerTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -14,7 +14,7 @@ protocol DrawingDeleteDelegate {
     func didDeleteDrawing(_ drawing: Drawing)
 }
 
-class DrawingsDisplayViewController: UITableViewController, DrawingDeleteDelegate {
+class DrawingsDisplayViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, DrawingDeleteDelegate {
     
     private var documents: [DocumentSnapshot] = []
     public var drawings: [Drawing] = []
@@ -53,14 +53,13 @@ class DrawingsDisplayViewController: UITableViewController, DrawingDeleteDelegat
                 } else {
                     print("not a good drawing")
                     return nil
-//                    fatalError("Unable to initialize type \(Drawing.self) with dictionary \(document.data())")
                 }
             }
             
-            self.drawings = results.compactMap({ $0 })
+            self.drawings = results.compactMap({ $0 }).sorted(by: { $0.startDate! > $1.startDate! })
             print("\(self.drawings.count) drawings")
             self.documents = snapshot.documents
-            self.tableView.reloadData()
+            self.collectionView.reloadData()
             
         }
     }
@@ -71,28 +70,25 @@ class DrawingsDisplayViewController: UITableViewController, DrawingDeleteDelegat
     }
     
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+ 
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         drawings.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "drawingCell") as! DrawingTableViewCell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "drawingCell", for: indexPath) as! DrawingCollectionViewCell
         
         cell.drawing = drawings[indexPath.row]
         cell.deleteDelegate = self
+
         
         return cell
     }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        100
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let drawing = drawings[indexPath.row]
         
         guard let editDrawingVC = storyboard?.instantiateViewController(identifier: "editDrawingVC") as? EditDrawingViewController else {
@@ -102,15 +98,20 @@ class DrawingsDisplayViewController: UITableViewController, DrawingDeleteDelegat
         present(editDrawingVC, animated: true, completion: nil)
     }
     
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: (self.view.frame.width / 2) - 30 , height: (self.view.frame.width / 2) - 30 )
+    }
+   
     func didDeleteDrawing(_ drawing: Drawing) {
         guard let drawingID = drawing.id else {
             return
         }
         Firestore.firestore().collection("drawing").document(drawingID).delete()
-        tableView.reloadData()
+//        tableView.reloadData()
+        self.collectionView.reloadData()
     }
-    
-    
+
     /*
      // MARK: - Navigation
      
