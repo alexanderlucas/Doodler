@@ -102,6 +102,31 @@ class DrawingsDisplayViewController: UICollectionViewController, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: (self.view.frame.width / 2) - 30 , height: (self.view.frame.width / 2) - 30 )
     }
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { suggestedActions in
+
+            // "puppers" is the array backing the collection view
+            return self.makeContextMenu(for: self.drawings[indexPath.row])
+        })
+
+    }
+  
+
+    func makeContextMenu(for drawing: Drawing) -> UIMenu {
+        let delete = UIAction(title: "Delete Doodle", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
+            guard let drawingID = drawing.id else {
+                return
+            }
+            Firestore.firestore().collection("drawing").document(drawingID).delete()
+
+            self.collectionView.reloadData()
+        }
+
+        return UIMenu(title: "Main Menu", children: [delete])
+    }
+
    
     func didDeleteDrawing(_ drawing: Drawing) {
         guard let drawingID = drawing.id else {

@@ -9,9 +9,11 @@ import UIKit
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import RoundSlider
+import SwiftUI
 
 
-class EditDrawingViewController: UIViewController {
+class EditDrawingViewController: UIViewController, UIPopoverPresentationControllerDelegate {
     
     var currentDrawing: Drawing!
     
@@ -21,7 +23,14 @@ class EditDrawingViewController: UIViewController {
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
-    var drawingColor: UIColor = UIColor.label
+    var sliderData: SliderData = SliderData(minValue: 1, maxValue: 10, defaultValue: 1, color: .green, goesUp: false)
+    
+    
+    var drawingColor: UIColor = UIColor.label {
+        didSet {
+            sliderData.color = Color(drawingColor)
+        }
+    }
     
     let db = Firestore.firestore()
     
@@ -44,11 +53,13 @@ class EditDrawingViewController: UIViewController {
                 layers.append(layer)
                 view.layer.addSublayer(layer)
             }
-
+            
         }
         colorWell.selectedColor = drawingColor
         colorWell.title = "Select Pencil Color"
         colorWell.addTarget(self, action: #selector(colorWellChanged(_:)), for: .valueChanged)
+        
+        sliderData.color = Color(drawingColor)
         
     }
     
@@ -61,28 +72,28 @@ class EditDrawingViewController: UIViewController {
         for layer in layers {
             layer.strokeEnd = 0
         }
-
+        
         let queue = OperationQueue()
-
+        
         for layer in layers {
             
             queue.addOperation {
                 let animation = CABasicAnimation(keyPath: "strokeEnd")
-
+                
                 // Set the animation duration appropriately
                 animation.duration = 1.0
-
+                
                 // Animate from 0 (no circle) to 1 (full circle)
                 animation.fromValue = 0
                 animation.toValue = 1
-
+                
                 // Do a linear animation (i.e. the speed of the animation stays the same)
                 animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
-
+                
                 // Set the circleLayer's strokeEnd property to 1.0 now so that it's the
                 // right value when the animation ends.
                 layer.strokeEnd = 1.0
-
+                
                 // Do the actual animation
                 layer.add(animation, forKey: "animatePath")
             }
@@ -98,7 +109,7 @@ class EditDrawingViewController: UIViewController {
             if eraserButton.isSelected {
                 currentDrawing.eraseStarted(at: firstPoint)
             } else {
-                let layer = currentDrawing.drawStarted(at: firstPoint, with: drawingColor)
+                let layer = currentDrawing.drawStarted(at: firstPoint, color: drawingColor, thickness: CGFloat(sliderData.getValue()))
                 drawingView.layer.addSublayer(layer)
             }
             
@@ -126,19 +137,13 @@ class EditDrawingViewController: UIViewController {
         }
     }
     
-    @IBAction func scaleButtonPressed(_ sender: Any) {
-        var transform = CGAffineTransform.identity
-        transform = transform.scaledBy(x:  0.5, y: 0.5)
-        
-        for mark in currentDrawing.marks {
-            mark.drawingLayer.transform = CATransform3DMakeScale(0.5, 0.5, 1)
-        }
-    }
-    
     @objc func colorWellChanged(_ sender: Any) {
         drawingColor = colorWell.selectedColor!
     }
     
+    @IBAction func thicknessButtonPressed(_ sender: Any) {
+        
+    }
     @IBAction func eraserButtonPressed(_ sender: UIButton) {
         sender.isSelected.toggle()
         
@@ -147,28 +152,28 @@ class EditDrawingViewController: UIViewController {
     }
     @IBAction func replayButtonPressed(_ sender: Any) {
         animateLayers()
-
+        
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
         loadingIndicator.startAnimating()
         saveButton.isEnabled = false
         saveButton.tintColor = .clear
-
+        
         if let drawingID = currentDrawing.id {
             db.collection("drawing").document(drawingID).updateData(currentDrawing.dictionary) { err in
-                    if let err = err {
-                        print("Error updating document: \(err)")
-                    } else {
-                        print("Document successfully updated")
-                        self.loadingIndicator.stopAnimating()
-                        self.saveButton.isEnabled = true
-                        self.saveButton.tintColor = .systemGreen
-
-                        self.dismiss(animated: true, completion: nil)
-                    }
+                if let err = err {
+                    print("Error updating document: \(err)")
+                } else {
+                    print("Document successfully updated")
+                    self.loadingIndicator.stopAnimating()
+                    self.saveButton.isEnabled = true
+                    self.saveButton.tintColor = .systemGreen
+                    
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
-
+            
         } else {
             db.collection("drawing").addDocument(data: currentDrawing.dictionary) { err in
                 if let err = err {
@@ -177,11 +182,11 @@ class EditDrawingViewController: UIViewController {
                     self.loadingIndicator.stopAnimating()
                     self.saveButton.isEnabled = true
                     self.saveButton.tintColor = .systemGreen
-
+                    
                     self.dismiss(animated: true, completion: nil)
                 }
             }
-
+            
         }
         
         print(currentDrawing.dictionary)
@@ -190,5 +195,16 @@ class EditDrawingViewController: UIViewController {
     @IBAction func cancelButtonPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {            if let dest = segue.destination as? SliderViewController {
+        dest.sliderData = self.sliderData
+        dest.modalPresentationStyle = UIModalPresentationStyle.popover
+        dest.popoverPresentationController!.delegate = self
+    }
+    }
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        .none
+    }
+    
 }
 

@@ -19,8 +19,8 @@ class Drawing {
     
     var dictionary: [String: Any] {
         [
-            "startDate": startDate!,
-            "endDate": endDate!,
+            "startDate": startDate ?? Date(),
+            "endDate": endDate ?? Date(),
             "marks": marks.map({ $0.dictionary })
         ]
     }
@@ -65,12 +65,12 @@ class Drawing {
     }
 
     
-    func drawStarted(at point: CGPoint, with color: UIColor) -> CAShapeLayer {
+    func drawStarted(at point: CGPoint, color: UIColor, thickness: CGFloat) -> CAShapeLayer {
         
         if marks.count == 0 {
             startDate = Date()
         }
-        let mark = Mark(startingPoint: point, color: color)
+        let mark = Mark(startingPoint: point, color: color, thickness: thickness)
         
         marks.append(mark)
         
@@ -130,6 +130,7 @@ class Mark {
     var path: UIBezierPath
     var drawingLayer: CAShapeLayer
     var color: UIColor
+    var thickness: CGFloat
     
     var dictionary: [String: Any] {
         [
@@ -143,17 +144,19 @@ class Mark {
                 ]
             }),
             "erased": erased,
-            "color": color.hexValue
+            "color": color.hexValue,
+            "thickness": thickness
         ]
     }
     
     
-    init(startingPoint: CGPoint, color: UIColor) {
+    init(startingPoint: CGPoint, color: UIColor, thickness: CGFloat) {
         self.startDate = Date()
         self.pathPoints = [clock_t: CGPoint]()
         pathPoints[clock()] = startingPoint
         self.erased = false
         self.color = color
+        self.thickness = thickness
         path = UIBezierPath()
         path.move(to: startingPoint)
         
@@ -161,16 +164,18 @@ class Mark {
         drawingLayer.path = path.cgPath
         drawingLayer.fillColor = nil
         drawingLayer.strokeColor = color.cgColor
+        drawingLayer.lineWidth = thickness
 //        let thickness = Int.random(in: 0..<10)
 //        drawingLayer.lineWidth = CGFloat(thickness)
         
     }
     
-    init(startDate: Date, points: [clock_t: CGPoint], color: UIColor, erased: Bool) {
+    init(startDate: Date, points: [clock_t: CGPoint], color: UIColor, thickness: CGFloat, erased: Bool) {
         self.startDate = startDate
         self.pathPoints = points
         self.erased = erased
         self.color = color
+        self.thickness = thickness
         drawingLayer = CAShapeLayer()
         path = UIBezierPath()
 
@@ -196,6 +201,8 @@ class Mark {
                 
         let erased: Bool = dictionary["erased"] as? Bool ?? false
         let colorString: String = dictionary["color"] as? String ?? "#000000"
+        let thickness: CGFloat = dictionary["thickness"] as? CGFloat ?? 1
+
         let color = UIColor(hex: colorString)
         
         var pathPoints = [clock_t: CGPoint]()
@@ -207,7 +214,7 @@ class Mark {
             pathPoints[timestamp] = cgPoint
         }
          
-        self.init(startDate: startDate.dateValue(), points: pathPoints, color: color, erased: erased)
+        self.init(startDate: startDate.dateValue(), points: pathPoints, color: color, thickness: thickness, erased: erased)
         
     }
 

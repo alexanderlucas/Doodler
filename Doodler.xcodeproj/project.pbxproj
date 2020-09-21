@@ -3,13 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		3C4127C52A81A8D234F502EB /* Pods_Doodler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C85E952C718A5B643E57257 /* Pods_Doodler.framework */; };
 		6D76544A55A429DB6991AEFE /* Pods_Doodler_DoodlerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87E7315AB8F46FB73826E7A4 /* Pods_Doodler_DoodlerUITests.framework */; };
 		E61769237679676BFFA9775E /* Pods_DoodlerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807A2CB33B84589D6DAB9240 /* Pods_DoodlerTests.framework */; };
+		F05EBA4F2518E318009B2D59 /* SliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05EBA4E2518E318009B2D59 /* SliderViewController.swift */; };
+		F05EBA582518E49E009B2D59 /* RoundSlider in Frameworks */ = {isa = PBXBuildFile; productRef = F05EBA572518E49E009B2D59 /* RoundSlider */; };
 		F0910E0325129F20008EB227 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0910E0225129F20008EB227 /* DrawingView.swift */; };
 		F0910E08251380CD008EB227 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0910E07251380CD008EB227 /* GoogleService-Info.plist */; };
 		F0910E09251380CD008EB227 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0910E07251380CD008EB227 /* GoogleService-Info.plist */; };
@@ -57,6 +59,7 @@
 		87E7315AB8F46FB73826E7A4 /* Pods_Doodler_DoodlerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Doodler_DoodlerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2C6CC904779C5465F6FFB75 /* Pods-Doodler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Doodler.release.xcconfig"; path = "Target Support Files/Pods-Doodler/Pods-Doodler.release.xcconfig"; sourceTree = "<group>"; };
 		A9FC722D79BFFC2B99B02891 /* Pods-DoodlerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoodlerTests.release.xcconfig"; path = "Target Support Files/Pods-DoodlerTests/Pods-DoodlerTests.release.xcconfig"; sourceTree = "<group>"; };
+		F05EBA4E2518E318009B2D59 /* SliderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewController.swift; sourceTree = "<group>"; };
 		F0910E0225129F20008EB227 /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
 		F0910E07251380CD008EB227 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F09729AF251383CB005D0935 /* Drawing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawing.swift; sourceTree = "<group>"; };
@@ -84,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F05EBA582518E49E009B2D59 /* RoundSlider in Frameworks */,
 				3C4127C52A81A8D234F502EB /* Pods_Doodler.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -159,6 +163,7 @@
 				F0D1913C2512999A0044CC2C /* SceneDelegate.swift */,
 				F0D1913E2512999A0044CC2C /* EditDrawingViewController.swift */,
 				F09729B62513B768005D0935 /* DrawingsDisplayViewController.swift */,
+				F05EBA4E2518E318009B2D59 /* SliderViewController.swift */,
 				F0910E0225129F20008EB227 /* DrawingView.swift */,
 				F0972A0D2513C8AE005D0935 /* DrawingCollectionViewCell.swift */,
 				F09729AF251383CB005D0935 /* Drawing.swift */,
@@ -207,6 +212,9 @@
 			dependencies = (
 			);
 			name = Doodler;
+			packageProductDependencies = (
+				F05EBA572518E49E009B2D59 /* RoundSlider */,
+			);
 			productName = Doodler;
 			productReference = F0D191372512999A0044CC2C /* Doodler.app */;
 			productType = "com.apple.product-type.application";
@@ -281,6 +289,9 @@
 				Base,
 			);
 			mainGroup = F0D1912E2512999A0044CC2C;
+			packageReferences = (
+				F05EBA562518E49E009B2D59 /* XCRemoteSwiftPackageReference "swift-round-slider" */,
+			);
 			productRefGroup = F0D191382512999A0044CC2C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -437,6 +448,7 @@
 				F0972A0E2513C8AE005D0935 /* DrawingCollectionViewCell.swift in Sources */,
 				F09729B72513B768005D0935 /* DrawingsDisplayViewController.swift in Sources */,
 				F09729B0251383CB005D0935 /* Drawing.swift in Sources */,
+				F05EBA4F2518E318009B2D59 /* SliderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -783,6 +795,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F05EBA562518E49E009B2D59 /* XCRemoteSwiftPackageReference "swift-round-slider" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alexanderlucas/swift-round-slider";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F05EBA572518E49E009B2D59 /* RoundSlider */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F05EBA562518E49E009B2D59 /* XCRemoteSwiftPackageReference "swift-round-slider" */;
+			productName = RoundSlider;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F0D1912F2512999A0044CC2C /* Project object */;
 }

@@ -97,9 +97,12 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lWG-eg-cYR">
                                 <rect key="frame" x="0.0" y="56" width="414" height="786"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uFi-ob-en7">
-                                        <rect key="frame" x="192" y="714" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uFi-ob-en7">
+                                        <rect key="frame" x="192" y="720" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="AP3-nM-vX5"/>
+                                            <constraint firstAttribute="height" constant="30" id="jed-If-Yf6"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="37"/>
                                         <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal">
@@ -109,8 +112,42 @@
                                             <action selector="replayButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RlY-04-S4D"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uZj-Rl-Pdt">
+                                        <rect key="frame" x="309" y="720" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="IMf-1e-Ccy"/>
+                                            <constraint firstAttribute="height" constant="30" id="PyN-FO-ZPk"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="37"/>
+                                        <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal">
+                                            <imageReference key="image" image="pencil.tip.crop.circle" catalog="system" symbolScale="large"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="thicknessButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Gfe-Lh-EUc"/>
+                                            <segue destination="jUT-TC-Eiz" kind="popoverPresentation" identifier="sliderSegue" popoverAnchorView="uZj-Rl-Pdt" id="F4f-9f-jiK">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vAq-tW-yNz">
+                                        <rect key="frame" x="20" y="720" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="i2w-ec-bWe"/>
+                                            <constraint firstAttribute="height" constant="30" id="lLx-EY-jRD"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="eraser"/>
+                                        <connections>
+                                            <action selector="eraserButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="89f-Pr-tcI"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="uFi-ob-en7" firstAttribute="centerX" secondItem="lWG-eg-cYR" secondAttribute="centerX" id="1zB-S9-O3r"/>
+                                    <constraint firstItem="vAq-tW-yNz" firstAttribute="leading" secondItem="lWG-eg-cYR" secondAttribute="leading" constant="20" id="fKA-b2-Yo4"/>
+                                </constraints>
                             </view>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eGJ-rA-1tt">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -133,19 +170,13 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vAq-tW-yNz">
-                                <rect key="frame" x="20" y="771" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" image="eraser"/>
-                                <connections>
-                                    <action selector="eraserButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="89f-Pr-tcI"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hiP-EH-sIT" customClass="UIColorWell">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hiP-EH-sIT" customClass="UIColorWell">
                                 <rect key="frame" x="364" y="776" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="BcR-Ym-uAl"/>
+                                    <constraint firstAttribute="width" constant="30" id="Jcj-QP-ZdE"/>
+                                </constraints>
                             </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="AFw-xm-CKC">
                                 <rect key="frame" x="368" y="20" width="20" height="20"/>
@@ -155,12 +186,18 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="hiP-EH-sIT" firstAttribute="leading" secondItem="uZj-Rl-Pdt" secondAttribute="trailing" constant="25" id="6Kd-4d-Wms"/>
                             <constraint firstItem="eGJ-rA-1tt" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="E9E-9K-cfS"/>
+                            <constraint firstItem="vAq-tW-yNz" firstAttribute="centerY" secondItem="hiP-EH-sIT" secondAttribute="centerY" id="TVd-qS-hSS"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hiP-EH-sIT" secondAttribute="trailing" constant="20" id="cWj-T8-oyy"/>
+                            <constraint firstItem="uZj-Rl-Pdt" firstAttribute="centerY" secondItem="hiP-EH-sIT" secondAttribute="centerY" id="ewk-Qf-FCm"/>
                             <constraint firstItem="eGJ-rA-1tt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="h51-0O-8Kg"/>
                             <constraint firstItem="lWG-eg-cYR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hGq-pp-KAR"/>
+                            <constraint firstItem="uFi-ob-en7" firstAttribute="centerY" secondItem="hiP-EH-sIT" secondAttribute="centerY" id="i0v-AS-rWw"/>
                             <constraint firstItem="lWG-eg-cYR" firstAttribute="top" secondItem="eGJ-rA-1tt" secondAttribute="bottom" id="j6p-Hh-37L"/>
                             <constraint firstItem="eGJ-rA-1tt" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="l36-Xi-OuO"/>
                             <constraint firstItem="lWG-eg-cYR" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="nV3-F6-V5a"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hiP-EH-sIT" secondAttribute="bottom" constant="2" id="vCn-jL-VDC"/>
                             <constraint firstAttribute="bottom" secondItem="lWG-eg-cYR" secondAttribute="bottom" id="vLY-On-JsW"/>
                         </constraints>
                     </view>
@@ -176,6 +213,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1086.9565217391305" y="-329.46428571428572"/>
+        </scene>
+        <!--Hosting Controller-->
+        <scene sceneID="hZD-Vf-NpX">
+            <objects>
+                <hostingController id="yja-4Q-3ze" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZoX-3y-1Ns" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2580" y="-224"/>
+        </scene>
+        <!--Slider View Controller-->
+        <scene sceneID="cXs-Il-PET">
+            <objects>
+                <viewController id="jUT-TC-Eiz" customClass="SliderViewController" customModule="Doodler" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gxf-sf-ffZ">
+                        <rect key="frame" x="0.0" y="0.0" width="240" height="40"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X9t-lP-xGa">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <segue destination="yja-4Q-3ze" kind="embed" destinationCreationSelector="sliderSegueAction:" id="cUK-ce-ngu"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6JF-OQ-6SU"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="X9t-lP-xGa" secondAttribute="trailing" id="HPz-Ae-HhX"/>
+                            <constraint firstItem="X9t-lP-xGa" firstAttribute="top" secondItem="gxf-sf-ffZ" secondAttribute="top" id="S8p-kb-Bn0"/>
+                            <constraint firstItem="6JF-OQ-6SU" firstAttribute="bottom" secondItem="X9t-lP-xGa" secondAttribute="bottom" id="Xuz-nc-0dI"/>
+                            <constraint firstItem="X9t-lP-xGa" firstAttribute="leading" secondItem="gxf-sf-ffZ" secondAttribute="leading" id="r8c-P0-IGg"/>
+                        </constraints>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="240" height="40"/>
+                    <size key="freeformSize" width="240" height="40"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oMW-c9-mfr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1743" y="-323"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gaP-Td-SJm">
@@ -198,6 +275,7 @@
     </scenes>
     <resources>
         <image name="eraser" width="64" height="64"/>
+        <image name="pencil.tip.crop.circle" catalog="system" width="128" height="121"/>
         <image name="play.rectangle" catalog="system" width="128" height="93"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
